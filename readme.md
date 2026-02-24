@@ -28,9 +28,9 @@ Check and update New York State Design System node modules and copy component, s
 
 ### Options
 **--no-vscode** 
-    Skip VS Code intellisense autocomplete support.
+: Skip VS Code intellisense autocomplete support.
 **--copy-only** 
-    Skip check for updated modules and copy files only.
+: Skip check for updated modules and copy files only.
 
 NYSDS Asset Manager streamlines updating and synchronizing files from the New York State Design System node modules (@nysds/components and @nysds/styles). Upon synch the manager checks for the latest version of @nysds modules and installs updates if necessary and then synchronizes files.
 
