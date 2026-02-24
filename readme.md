@@ -21,7 +21,7 @@ Alternately you can add sync functions to your scripts in your project package.j
 Then run the commands with npm `$ npm run nysds:*`
 
 ### Synopsis
-*npx nysds-sync* [--no-vscode | --copy-only] 
+*npx nysds-sync* [-n | --no-vscode] [-c | --copy-only] 
 
 ### Description
 Check and update New York State Design System node modules and copy component, styles, and VS Code support files into your project.
