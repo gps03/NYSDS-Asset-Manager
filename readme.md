@@ -29,6 +29,7 @@ Check and update New York State Design System node modules and copy component, s
 ### Options
 **--no-vscode** 
 : Skip VS Code intellisense autocomplete support.
+
 **--copy-only** 
 : Skip check for updated modules and copy files only.
 
