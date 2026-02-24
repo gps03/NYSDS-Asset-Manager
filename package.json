@@ -1,0 +1,9 @@
+{
+	"name": "nysds-asset-manager",
+	"version": "1.0",
+	"description": "NYSDS dependency manager and asset synchronization",
+	"main": "index.js",
+	"bin": {
+		"nysds-sync": "./cli.js"
+	}
+}
