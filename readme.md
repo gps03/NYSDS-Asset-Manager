@@ -27,9 +27,11 @@ Then run the commands with npm `$ npm run nysds:*`
 Check and update New York State Design System node modules and copy component, styles, and VS Code support files into your project.
 
 ### Options
+**-n**
 **--no-vscode** 
 : Skip VS Code intellisense autocomplete support.
 
+**-c**
 **--copy-only** 
 : Skip check for updated modules and copy files only.
 
