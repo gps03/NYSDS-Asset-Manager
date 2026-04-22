@@ -24,7 +24,7 @@ Then run the commands with npm `$ npm run nysds:*`
 *npx nysds-sync* [-n | --no-vscode] [-c | --copy-only] [-a | admin] [-b | business] [-e | environment] [-h | health] [-l | local] [-s | safety] [-t | transportation]
 
 ### Description
-Check and update New York State Design System node modules and copy component, styles, and VS Code support files into your project.
+Check and update New York State Design System node modules and copy component, style, and VS Code support files into your project.
 
 ### Options
 **[-n | --no-vscode]** 
@@ -47,16 +47,16 @@ NYSDS Asset Manager streamlines updating and synchronizing files from the New Yo
 #### JavaScript (components)
 The manager copies all .js and .map files from **node_modules/@nysds/components/dist/** to **assets/js/vendor/** making all NYSDS components available in your project. You can adjust the destination path in index.js.
 
-#### CSS (styles)
+#### CSS (core styles)
 The manager copies all css files that begin with nysds from **node_modules/@nysds/styles/dist** to **assets/styles/vendor/** making all relevant NYSDS styles available in your project. You can adjust the destination path in index.js.
 
 #### VS Code Support
 NYSDS provides IntelliSense support for VS Code to enable autocompletion. By default, VS Code support is included during asset synchronization.
-VS Code autocomplete requires a .vscode folder at the root of your project. If this folder doesn’t exist, the manager will create it along with a settings.json file containing the NYSDS custom data keys, allowing VS Code to recognize NYSDS components immediately. The manager then copies all files from **node_modules/@nysds/components/dist/.vscode/** into your project’s root **.vscode** folder.
+VS Code autocomplete requires a .vscode folder at the root of your project. If this folder doesn’t exist, the manager will create it along with a settings.json file containing the NYSDS custom data keys. The manager then copies all files from **node_modules/@nysds/components/dist/.vscode/** into your project’s root **.vscode** folder.
 
 You can disable VS Code autocomplete by passing the **--no-vscode** flag.
 
-#### Theme (styles)
+#### Theme (agency styles)
 To include an agency stylesheet during synchronization, pass the corresponding agency flag to the command. For example:
 ```bash
 $ npx nysds-sync -h
