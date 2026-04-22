@@ -1,7 +1,7 @@
 # NYSDOH NYSDS Asset Manager
 ---
 ## Useage
-`$ npx nysds-sync`
+<pre>$ npx nysds-sync <i>flags</i></pre>
 
 ## Install
 1. Clone this repo.
@@ -27,28 +27,19 @@ Then run the commands with npm `$ npm run nysds:*`
 Check and update New York State Design System node modules and copy component, styles, and VS Code support files into your project.
 
 ### Options
-**-n**
-**--no-vscode** 
+**[-n | --no-vscode]** 
 : Skip VS Code intellisense autocomplete support.
 
-**-c**
-**--copy-only** 
-: Skip check for updated modules and copy files only.
+**[-c | --copy-only]** 
+: Skip checking for updated modules and copy files only.
 
-**-a**
-**admin**
-**-b**
-**business**
-**-e**
-**environment**
-**-h**
-**health**
-**-l**
-**local**
-**-s**
-**safety**
-**-t**
-**transportation**
+**[-a | admin]**, 
+**[-b | business]**, 
+**[-e | environment]**, 
+**[-h | health]**, 
+**[-l | local]**, 
+**[-s | safety]**, 
+**[-t | transportation]**
 : Agency themes. The manager only respects the first agency flag, that is you cannot sync two or more agency stylesheets in one project.
 
 NYSDS Asset Manager streamlines updating and synchronizing files from the New York State Design System node modules (@nysds/components and @nysds/styles). Upon synch the manager checks for the latest version of @nysds modules and installs updates if necessary and then synchronizes files.
@@ -60,11 +51,20 @@ The manager copies all .js and .map files from **node_modules/@nysds/components/
 The manager copies all css files that begin with nysds from **node_modules/@nysds/styles/dist** to **assets/styles/vendor/** making all relevant NYSDS styles available in your project. You can adjust the destination path in index.js.
 
 #### VS Code Support
-NYSDS provides intellisense support files for VS Code to allow for autocompletion. By default VS Code support is included in asset synchronization. VS Code autocomplete requires a .vscode folder in the root of your project. If .vscode/ doesn't exist, the manager creates it and the settings.json file with the NYSDS custom data keys so VS Code recognizes the NYSDS components immediately. The manager then copies all files from **node_modules/@nysds/components/dist/.vscode/** to your root **.vscode** folder.
-VS Code autocomplete can be turned off by passing the **--no-vscode** option.
+NYSDS provides IntelliSense support for VS Code to enable autocompletion. By default, VS Code support is included during asset synchronization.
+VS Code autocomplete requires a .vscode folder at the root of your project. If this folder doesn’t exist, the manager will create it along with a settings.json file containing the NYSDS custom data keys, allowing VS Code to recognize NYSDS components immediately. The manager then copies all files from **node_modules/@nysds/components/dist/.vscode/** into your project’s root **.vscode** folder.
+
+You can disable VS Code autocomplete by passing the **--no-vscode** flag.
 
 #### Theme (styles)
-Include an agency stylesheet in the sync by passing the flag for the sheet you want, e.g., `$ npx nysds-sync -h` or `$ npx nysds-sync health` will cause the theme-health.css stylesheet to be synced with other css files. Theme stylesheets share the same destination as other stylesheets. Note that the manager will only include the first valid flag, you cannot syncronize more than one agency stylesheet. At this time the manager does not remove stylesheets you have previously synchronized to your project.
+To include an agency stylesheet during synchronization, pass the corresponding agency flag to the command. For example:
+```bash
+$ npx nysds-sync -h
+$ npx nysds0sync health
+
+```
+Either command will sync the theme-health.css stylesheet along with the other CSS files. Agency theme stylesheets are placed in the same destination as all other synced stylesheets.
+Note that only the first valid agency flag is applied—you cannot synchronize more than one agency stylesheet at a time. Additionally, the manager does not currently remove agency stylesheets that were previously synchronized to your project.
 
 ### Troubleshooting
 - Verify your node_modules global directory: **npm root -g**
