@@ -40,7 +40,7 @@ Check and update New York State Design System node modules and copy component, s
 **[-l | local]**, 
 **[-s | safety]**, 
 **[-t | transportation]**
-: Agency themes. The manager only respects the first agency flag, that is you cannot sync two or more agency stylesheets in one project.
+: Agency themes. Only the first valid agency flag is applied—you cannot synchronize more than one agency stylesheet at a time.
 
 NYSDS Asset Manager streamlines updating and synchronizing files from the New York State Design System node modules (@nysds/components and @nysds/styles). Upon synch the manager checks for the latest version of @nysds modules and installs updates if necessary and then synchronizes files.
 
@@ -60,7 +60,7 @@ You can disable VS Code autocomplete by passing the **--no-vscode** flag.
 To include an agency stylesheet during synchronization, pass the corresponding agency flag to the command. For example:
 ```bash
 $ npx nysds-sync -h
-$ npx nysds0sync health
+$ npx nysds-sync health
 
 ```
 Either command will sync the theme-health.css stylesheet along with the other CSS files. Agency theme stylesheets are placed in the same destination as all other synced stylesheets.
