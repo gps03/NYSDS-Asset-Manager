@@ -21,7 +21,7 @@ Optionally, once installed globally, execute `$ npm link nysds-asset-manager` fr
 Then run the commands with npm `$ npm run nysds:*`
 
 ### Synopsis
-*npx nysds-sync* [-n | --no-vscode] [-c | --copy-only] 
+*npx nysds-sync* [-n | --no-vscode] [-c | --copy-only] [-a | admin] [-b | business] [-e | environment] [-h | health] [-l | local] [-s | safety] [-t | transportation]
 
 ### Description
 Check and update New York State Design System node modules and copy component, styles, and VS Code support files into your project.
@@ -35,17 +35,36 @@ Check and update New York State Design System node modules and copy component, s
 **--copy-only** 
 : Skip check for updated modules and copy files only.
 
+**-a**
+**admin**
+**-b**
+**business**
+**-e**
+**environment**
+**-h**
+**health**
+**-l**
+**local**
+**-s**
+**safety**
+**-t**
+**transportation**
+: Agency themes. The manager only respects the first agency flag, that is you cannot sync two or more agency stylesheets in one project.
+
 NYSDS Asset Manager streamlines updating and synchronizing files from the New York State Design System node modules (@nysds/components and @nysds/styles). Upon synch the manager checks for the latest version of @nysds modules and installs updates if necessary and then synchronizes files.
 
 #### JavaScript (components)
 The manager copies all .js and .map files from **node_modules/@nysds/components/dist/** to **assets/js/vendor/** making all NYSDS components available in your project. You can adjust the destination path in index.js.
 
 #### CSS (styles)
-Adapted for Department of Health projects the manager copies all css files that begin with nysds and the theme-health.css file from **node_modules/@nysds/styles/dist** to **assets/styles/vendor/** making all relevant NYSDS styles available in your project. You can adjust the destination path in index.js.
+The manager copies all css files that begin with nysds from **node_modules/@nysds/styles/dist** to **assets/styles/vendor/** making all relevant NYSDS styles available in your project. You can adjust the destination path in index.js.
 
 #### VS Code Support
 NYSDS provides intellisense support files for VS Code to allow for autocompletion. By default VS Code support is included in asset synchronization. VS Code autocomplete requires a .vscode folder in the root of your project. If .vscode/ doesn't exist, the manager creates it and the settings.json file with the NYSDS custom data keys so VS Code recognizes the NYSDS components immediately. The manager then copies all files from **node_modules/@nysds/components/dist/.vscode/** to your root **.vscode** folder.
 VS Code autocomplete can be turned off by passing the **--no-vscode** option.
+
+#### Theme (styles)
+Include an agency stylesheet in the sync by passing the flag for the sheet you want, e.g., `$ npx nysds-sync -h` or `$ npx nysds-sync health` will cause the theme-health.css stylesheet to be synced with other css files. Theme stylesheets share the same destination as other stylesheets. Note that the manager will only include the first valid flag, you cannot syncronize more than one agency stylesheet. At this time the manager does not remove stylesheets you have previously synchronized to your project.
 
 ### Troubleshooting
 - Verify your node_modules global directory: **npm root -g**

@@ -5,6 +5,8 @@ const { execSync } = require('child_process');
 const projectDir = process.cwd();
 const REQUIRED_DEPS = ['@nysds/components', '@nysds/styles'];
 
+let themeFile = null;
+
 const config = {
 	components: {
 		src: path.join(projectDir, 'node_modules/@nysds/components/dist'),
@@ -14,13 +16,49 @@ const config = {
 	styles: {
 		src: path.join(projectDir, 'node_modules/@nysds/styles/dist'),
 		dest: path.join(projectDir, 'assets/styles/vendor'),
-		filter: (file) => file.startsWith('nysds') || file === 'theme-health.css',
+		filter: (file) => file.startsWith('nysds') || file === themeFile,
 	},
 	vscode: {
 		src: path.join(projectDir, 'node_modules/@nysds/components/dist/.vscode'),
 		dest: path.join(projectDir, '.vscode'),
 	},
 };
+
+
+//find the theme by short or long flag
+function themeOptions (){
+	const themeArgs = process.argv.slice(2);
+	const themeMap = {
+		'-a':'admin',
+		'-b':'business',
+		'-e':'environment',
+		'-h':'health',
+		'-l':'local',
+		'-s':'safety',
+		'-t':'transportation'
+	};
+	const themeLongNames = Object.values(themeMap);
+	function getTheme (){
+		for (const arg of themeArgs) {
+			if (themeMap[arg]) {
+				return themeMap[arg];
+			}
+			if (themeLongNames.includes(arg)) {
+				return arg;
+			}
+		}
+		return null;
+	}
+
+	themeName = getTheme();
+
+	if(themeName){
+		themeFile = `theme-${themeName}.css`;
+	} else {
+		console.warn(`⚠️  No agency theme selected.`);
+	}
+}
+
 
 function validateDependencies() {
 	const missing = REQUIRED_DEPS.filter((dep) => !fs.existsSync(path.join(projectDir, 'node_modules', dep)));
@@ -61,11 +99,12 @@ function syncVscode() {
 	files.forEach((file) => {
 		fs.copyFileSync(path.join(src, file), path.join(dest, file));
 	});
-	console.log(`✅ VS Code: Synced ${files.length} configuration files.`);
+	console.log(`🔄️ VS Code: Synced ${files.length} configuration files.`);
 }
 
 function syncAssets(options = {}) {
 	validateDependencies();
+	themeOptions();
 
 	// 1. Sync Standard Assets
 	Object.entries(config).forEach(([name, dirConfig]) => {
@@ -81,12 +120,15 @@ function syncAssets(options = {}) {
 		targetFiles.forEach((file) => {
 			fs.copyFileSync(path.join(src, file), path.join(dest, file));
 		});
-		console.log(`✅ ${name}: Synced ${targetFiles.length} files.`);
+		console.log(`🔄️ ${name}: Synced ${targetFiles.length} files.`);
 	});
 
 	// 2. Sync VS Code (unless ignored)
 	if (!options.noVscode) {
 		syncVscode();
+	}
+	if(themeFile){
+		console.log(`🔄️ theme: Synced ${themeFile}`);
 	}
 }
 
