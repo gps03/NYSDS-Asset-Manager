@@ -8,18 +8,6 @@
 1. From the root of your local copy execute: `$ npm link` (installs the Asset Manager globally)
 1. CD to your project and run the asset manager from npx: `$ npx nysds-sync`
 
-Optionally, once installed globally, execute `$ npm link nysds-asset-manager` from your project root to add the Asset Manager to your project node_modules and enable sync functions from within your project package.json:
-
-```json
-  "scripts": {
-  "nysds:sync": "npx nysds-sync",
-  "nysds:sync-no-editor": "npx nysds-sync --no-vscode",
-  "nysds:copy": "npx nysds-sync --copy-only"
-}
-```
-
-Then run the commands with npm `$ npm run nysds:*`
-
 ### Synopsis
 *npx nysds-sync* [-n | --no-vscode] [-c | --copy-only] [-a | admin] [-b | business] [-e | environment] [-h | health] [-l | local] [-s | safety] [-t | transportation]
 
