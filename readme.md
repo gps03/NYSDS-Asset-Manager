@@ -57,6 +57,4 @@ Note that only the first valid agency flag is applied—you cannot synchronize m
 ### Troubleshooting
 - Verify your node_modules global directory: **npm root -g**
 - Verify global modules: **npm ls -g --depth=0**
-- It is only necessary to install the module locally to use npm scripts.
-- The `$ npm link` command installs the Asset Manager globally by creating a symbolic link to your local copy of this repo. NPM on windows cannot traverse drive partitions, therefore, if you intend to install the Asset Manager locally to your project (to enable npm scripts) your local copy of this repo, your global node_modules folder, and your project must all be on the same logical drive. Note you can execute npx commands without installing the Asset Manager to your project node_modules. 
 
